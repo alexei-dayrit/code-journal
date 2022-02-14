@@ -1,0 +1,8 @@
+textarea {
+  resize: none;
+  display: block;
+}
+
+label {
+  display: block;
+}
