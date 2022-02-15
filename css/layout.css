@@ -28,6 +28,10 @@
     padding: 0 0.75rem;
   }
 
+  .no-margin-top {
+    margin-top: 0;
+  }
+
   .column-half {
     width: 50%;
   }
