@@ -13,31 +13,60 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Proza+Libre:wght@700&display=swap"
+    rel="stylesheet">
 </head>
 <body>
-  <header>
-  </header>
-  <main>
-    <div class="row">
+  <div class="container">
+    <header>
+      <div class="row">
+        <div class="column-full">
+          <h2>Code Journal</h2>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="row">
+        <div class="column-full">
+          <h1>New Entry</h1>
+        </div>
+      </div>
       <div data-view="entry-form">
         <form>
-          <h1>New Entry</h1>
-          <div class="form-control">
-            <label for="title">Title</label>
-            <input type="textbox" id="title" name="title">
+          <div class="row">
+            <div class="column-full column-half">
+              <img src="images/placeholder-image-square.jpg" alt="Entry image">
+            </div>
+            <div class="column-full column-half">
+              <div class="row">
+                <div class="column-full">
+                  <label for="title">Title</label>
+                  <input type="textbox" id="title" name="title">
+                </div>
+                <div class="column-full margin-top">
+                  <label for="photo">Photo URL</label>
+                  <input type="url" id="photo" name="photo">
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="form-control">
-            <label for="photo">Photo URL</label>
-            <input type="url" id="photo" name="photo">
+          <div class="row">
+            <div class="column-full margin-top">
+              <label for="notes">Notes</label>
+              <textarea id="notes" name="notes" rows="8"></textarea>
+            </div>
           </div>
-          <div class="form-control">
-            <label for="notes">Notes</label>
-            <textarea id="notes" name="notes"></textarea>
+          <div class="row">
+            <div class="column-full">
+              <div class="row align-right margin-top">
+                <input type="button" id="save" name="save" value="Save">
+              </div>
+            </div>
           </div>
         </form>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
