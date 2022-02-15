@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Proza+Libre:wght@700&display=swap"
     rel="stylesheet">
 </head>
+
 <body>
   <header>
     <div class="container">
@@ -24,8 +26,8 @@
       </div>
     </div>
   </header>
-  <div class="container">
-    <main>
+  <main>
+    <div class="container">
       <div class="row">
         <div class="column-full">
           <h1>New Entry</h1>
@@ -65,14 +67,41 @@
           </div>
         </form>
       </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="column-full">
+          <div class="row space-between-center">
+            <h1>Entries</h1>
+            <a class="new-entry-btn" href="#">New</a>
+          </div>
+        </div>
+      </div>
       <div data-view="entries">
         <ul>
-
+          <li>
+            <div class="row">
+              <div class="column-full column-half">
+                <img src="images/placeholder-image-square.jpg" alt="Entry image">
+              </div>
+              <div class="column-half column-full">
+                <h2 class="no-margin-top">Ada Lovelace</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis architecto aliquid magni nisi,
+                  inventore tempora doloremque ex consequuntur. Reiciendis ratione ab id, dignissimos incidunt soluta
+                  hic quam. Nam dignissimos ullam sit velit consequatur nulla rerum quaerat esse inventore et tempora,
+                  unde repudiandae, mollitia molestiae alias laboriosam molestias ratione sapiente accusamus.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure alias itaque commodi, sint est illum
+                  necessitatibus, minima nostrum perferendis deleniti error aut et non delectus magnam repellat
+                  voluptatibus! Temporibus, molestias.</p>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
