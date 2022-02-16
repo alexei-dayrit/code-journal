@@ -28,3 +28,41 @@ $form.addEventListener('submit', function (event) {
   $img.setAttribute('src', $placeholderImg);
   $form.reset();
 });
+
+function renderEntry(entry) {
+  var $entries = document.querySelector('[data-view="entries"]');
+  var $list = document.createElement('ul');
+  $entries.appendChild($list);
+
+  var $listItem = document.createElement('li');
+  $list.prepend($listItem);
+
+  var $row = document.createElement('div');
+  $row.setAttribute('class', 'row');
+  $listItem.appendChild($row);
+
+  var $columnHalf1 = document.createElement('div');
+  $columnHalf1.setAttribute('class', 'column-half');
+  $row.appendChild($columnHalf1);
+
+  var $image = document.createElement('img');
+  $image.setAttribute('src', entry.photo);
+  $columnHalf1.appendChild($image);
+
+  var $columnHalf2 = document.createElement('div');
+  $columnHalf2.setAttribute('class', 'column-half');
+  $row.appendChild($columnHalf2);
+
+  var $h2 = document.createElement('h2');
+  $h2.setAttribute('class', 'no-margin-top');
+  $h2.textContent = entry.title;
+  $columnHalf2.appendChild($h2);
+
+  var $par = document.createElement('p');
+  $par.textContent = entry.notes;
+  $columnHalf2.appendChild($par);
+
+  return $list;
+}
+
+renderEntry();
