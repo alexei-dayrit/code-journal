@@ -18,13 +18,18 @@
   width: 100%;
 }
 
+.column-two-fiths {
+  width: calc(100% / 3);
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
   }
 
   .column-full,
-  .column-half {
+  .column-half,
+  .column-two-fifths {
     padding: 1rem 0.75rem;
   }
 
