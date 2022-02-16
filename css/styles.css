@@ -58,6 +58,17 @@ input[type="submit"] {
   flex-direction: row-reverse;
 }
 
+/* NAV */
+.nav-link {
+  margin-left: 1.2rem;
+  text-decoration: none;
+  color: white;
+}
+
+.column-two-fiths {
+  width: calc(100% / 3);
+}
+
 /* DATA ENTRIES */
 
 ul {
