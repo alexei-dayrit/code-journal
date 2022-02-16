@@ -64,5 +64,9 @@ function renderEntry(entry) {
 
   return $list;
 }
-
-renderEntry();
+var $main = document.querySelector('main');
+window.addEventListener('DOMContentLoaded', function (event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    $main.appendChild(renderEntry(data.entries[i]));
+  }
+});
