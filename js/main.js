@@ -5,6 +5,7 @@ var $photoUrl = document.querySelector('#photo');
 var $img = document.querySelector('img');
 var $placeholderImg = $img.getAttribute('src');
 var $form = document.querySelector('form');
+var $list = document.querySelector('ul');
 
 $photoUrl.addEventListener('input', function (event) {
   $img.setAttribute('src', event.target.value);
@@ -28,7 +29,6 @@ $form.addEventListener('submit', function (event) {
   $img.setAttribute('src', $placeholderImg);
   $form.reset();
 });
-var $list = document.querySelector('ul');
 
 function renderEntry(entry) {
   var $listItem = document.createElement('li');
@@ -65,4 +65,15 @@ window.addEventListener('DOMContentLoaded', function (event) {
   for (var i = 0; i < data.entries.length; i++) {
     $list.appendChild(renderEntry(data.entries[i]));
   }
+});
+
+var $navLink = document.querySelector('.nav-link');
+function handleNavLink(event) {
+  $navLink.setAttribute('href', '#all-entries');
+}
+$navLink.addEventListener('click', handleNavLink);
+
+var $newEntry = document.querySelector('.new-entry-btn');
+$newEntry.addEventListener('click', function (event) {
+  $newEntry.setAttribute('href', '#new-entry-form');
 });
