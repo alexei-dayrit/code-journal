@@ -28,12 +28,9 @@ $form.addEventListener('submit', function (event) {
   $img.setAttribute('src', $placeholderImg);
   $form.reset();
 });
+var $list = document.querySelector('ul');
 
 function renderEntry(entry) {
-  var $entries = document.querySelector('[data-view="entries"]');
-  var $list = document.createElement('ul');
-  $entries.appendChild($list);
-
   var $listItem = document.createElement('li');
   $list.prepend($listItem);
 
@@ -62,11 +59,10 @@ function renderEntry(entry) {
   $par.textContent = entry.notes;
   $columnHalf2.appendChild($par);
 
-  return $list;
+  return $listItem;
 }
-var $main = document.querySelector('main');
 window.addEventListener('DOMContentLoaded', function (event) {
   for (var i = 0; i < data.entries.length; i++) {
-    $main.appendChild(renderEntry(data.entries[i]));
+    $list.appendChild(renderEntry(data.entries[i]));
   }
 });
