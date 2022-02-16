@@ -47,6 +47,11 @@ input[type="submit"] {
   border-style: none;
 }
 
+input:focus,
+textarea:focus {
+  outline: 2px solid #562b81;
+}
+
 .margin-top-bot {
   margin-top: 1rem;
   margin-bottom: 0.3rem;
