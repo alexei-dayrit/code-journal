@@ -112,5 +112,10 @@ $list.addEventListener('click', function (event) {
     $newEntryPage.className = 'home container view';
     $entriesHist.className = 'storage container view hidden';
     data.view = 'entry-form';
+    var $closestListItem = event.target.closest('[data-entry-id]');
+    var $currentId = $closestListItem.getAttribute('data-entry-id');
+    data.editing = data.entries[$currentId].entryId;
   }
 });
+// data.editing
+// data.entries[index].entryId
