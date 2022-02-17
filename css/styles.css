@@ -24,6 +24,14 @@ img {
   object-fit: contain;
 }
 
+.inline {
+  display: inline-block;
+}
+
+.home-page {
+  margin-right: 1rem;
+}
+
 #photo,
 #title,
 textarea {

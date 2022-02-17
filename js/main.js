@@ -31,12 +31,13 @@ $form.addEventListener('submit', function (event) {
   data.nextEntryId++;
   $list.prepend(renderEntry(data.entries[0]));
   $img.setAttribute('src', $placeholderImg);
-  data.view = 'entries';
   $newEntryPage.className = 'home view hidden';
   $entriesHist.className = 'storage container view';
+  data.view = 'entries';
   $form.reset();
 });
 
+var idCounter = 1;
 function renderEntry(entry) {
   var $listItem = document.createElement('li');
   $list.prepend($listItem);
@@ -66,13 +67,13 @@ function renderEntry(entry) {
   $par.textContent = entry.notes;
   $columnHalf2.appendChild($par);
 
-  var $icon = document.createElement('i');
-  $icon.setAttribute('class', 'fa-solid fa-pen');
-  $h2.appendChild($icon);
+  $listItem.setAttribute('data-entry-id', idCounter);
+  idCounter++;
   return $listItem;
 }
+
 window.addEventListener('DOMContentLoaded', function (event) {
-  for (var i = 0; i < data.entries.length; i++) {
+  for (var i = 1; i < data.entries.length; i++) {
     $list.appendChild(renderEntry(data.entries[i]));
   }
 });
@@ -100,3 +101,10 @@ if (data.view === 'entry-form') {
   $newEntryPage.className = 'home view hidden';
   $entriesHist.className = 'storage container view';
 }
+
+// $list.addEventListener('click', function (event) {
+
+// });
+
+// var $id = document.querySelector('li[data-entry-id="1"]');
+// console.log($id.textContent);
