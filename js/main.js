@@ -59,7 +59,7 @@ function renderEntry(entry) {
   $row.appendChild($columnHalf2);
 
   var $h2 = document.createElement('h2');
-  $h2.setAttribute('class', 'no-margin-top');
+  $h2.setAttribute('class', 'h2-entries');
   $h2.textContent = entry.title;
   $columnHalf2.appendChild($h2);
 
@@ -67,13 +67,18 @@ function renderEntry(entry) {
   $par.textContent = entry.notes;
   $columnHalf2.appendChild($par);
 
+  var $icon = document.createElement('i');
+  $icon.setAttribute('class', 'fa-solid fa-pen');
+  $h2.appendChild($icon);
+
   $listItem.setAttribute('data-entry-id', idCounter);
   idCounter++;
+
   return $listItem;
 }
 
 window.addEventListener('DOMContentLoaded', function (event) {
-  for (var i = 1; i < data.entries.length; i++) {
+  for (var i = 0; i < data.entries.length; i++) {
     $list.appendChild(renderEntry(data.entries[i]));
   }
 });
@@ -102,9 +107,10 @@ if (data.view === 'entry-form') {
   $entriesHist.className = 'storage container view';
 }
 
-// $list.addEventListener('click', function (event) {
-
-// });
-
-// var $id = document.querySelector('li[data-entry-id="1"]');
-// console.log($id.textContent);
+$list.addEventListener('click', function (event) {
+  if (event.target.tagName === 'I') {
+    $newEntryPage.className = 'home container view';
+    $entriesHist.className = 'storage container view hidden';
+    data.view = 'entry-form';
+  }
+});
