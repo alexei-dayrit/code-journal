@@ -65,6 +65,10 @@ function renderEntry(entry) {
   var $par = document.createElement('p');
   $par.textContent = entry.notes;
   $columnHalf2.appendChild($par);
+
+  var $icon = document.createElement('i');
+  $icon.setAttribute('class', 'fa-solid fa-pen');
+  $h2.appendChild($icon);
   return $listItem;
 }
 window.addEventListener('DOMContentLoaded', function (event) {
