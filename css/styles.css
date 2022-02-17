@@ -4,8 +4,7 @@ body {
   line-height: 1.2;
 }
 
-header,
-input[type="submit"] {
+header {
   background-color: #562b81;
   color: white;
 }
@@ -17,7 +16,6 @@ h1 {
 
 img {
   width: 100%;
-  padding-bottom: 1.2rem;
   object-fit: contain;
 }
 
@@ -37,13 +35,21 @@ label {
   margin-bottom: 0.5rem;
 }
 
+.new-entry-btn,
 input[type="submit"] {
-  display: inline-block;
+  background-color: #562b81;
+  color: white;
   text-transform: uppercase;
-  text-align: right;
-  padding: 0.4rem 0.8rem;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 0.6rem 1rem;
   border-radius: 6px;
   border-style: none;
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid #562b81;
 }
 
 .margin-top-bot {
@@ -53,4 +59,22 @@ input[type="submit"] {
 
 .align-right {
   flex-direction: row-reverse;
+}
+
+/* NAV */
+.nav-link-btn {
+  text-decoration: none;
+  color: white;
+}
+
+/* DATA ENTRIES */
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+.space-between-center {
+  justify-content: space-between;
+  align-items: center;
 }

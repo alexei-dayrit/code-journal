@@ -18,14 +18,28 @@
   width: 100%;
 }
 
+.column-nav {
+  width: 50%;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
   }
 
   .column-full,
-  .column-half {
-    padding: 0 0.75rem;
+  .column-half,
+  .column-nav {
+    padding: 1rem 0.75rem;
+  }
+
+  .column-nav {
+    width: calc(100% / 3);
+  }
+
+  .no-margin {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   .column-half {

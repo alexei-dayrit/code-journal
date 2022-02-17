@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,18 +15,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Proza+Libre:wght@700&display=swap"
     rel="stylesheet">
 </head>
+
 <body>
-  <header>
-    <div class="container">
-      <div class="row">
-        <div class="column-full">
-          <h2>Code Journal</h2>
+  <main>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="column-nav">
+            <h2 class="home-page">Code Journal</h2>
+          </div>
+          <div class="column-nav">
+            <h2>
+              <a class="nav-link-btn" id="nav-btn" href="#">
+                Entries
+              </a>
+            </h2>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
-  <div class="container">
-    <main>
+    </header>
+    <div class="container home view">
       <div class="row">
         <div class="column-full">
           <h1>New Entry</h1>
@@ -39,7 +48,7 @@
             </div>
             <div class="column-full column-half">
               <div class="row">
-                <div class="column-full">
+                <div class="column-full no-margin">
                   <label for="title">Title</label>
                   <input type="textbox" id="title" name="title" required>
                 </div>
@@ -58,16 +67,32 @@
           </div>
           <div class="row">
             <div class="column-full">
-              <div class="row align-right margin-top-bot">
+              <div class="row align-right">
                 <input type="submit" id="save" name="save" value="save">
               </div>
             </div>
           </div>
         </form>
       </div>
-    </main>
-  </div>
+    </div>
+    <div class="container storage view hidden">
+      <div class="row">
+        <div class="column-full">
+          <div class="row space-between-center">
+            <h1>Entries</h1>
+            <div>
+              <a class="new-entry-btn" id="entries-storage" href="#">New</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-view="entries">
+        <ul></ul>
+      </div>
+    </div>
+  </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
