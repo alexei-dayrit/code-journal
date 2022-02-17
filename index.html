@@ -17,24 +17,24 @@
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <div class="row flex-column">
-        <div class="column-two-fifths">
-          <h2>Code Journal</h2>
-        </div>
-        <div class="column-two-fifths">
-          <h2>
-            <a class="nav-link" href="">
-              Entries
-            </a>
-          </h2>
+  <main>
+    <header>
+      <div class="container">
+        <div class="row flex-column">
+          <div class="column-two-fifths">
+            <h2 class="home-page">Code Journal</h2>
+          </div>
+          <div class="column-two-fifths">
+            <h2>
+              <a class="nav-link-btn" id="nav-btn" href="#">
+                Entries
+              </a>
+            </h2>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
-  <main>
-    <div class="container" id="new-entry-form">
+    </header>
+    <div class="container home view">
       <div class="row">
         <div class="column-full">
           <h1>New Entry</h1>
@@ -48,7 +48,7 @@
             </div>
             <div class="column-full column-half">
               <div class="row">
-                <div class="column-full margin-top-bot">
+                <div class="column-full no-margin">
                   <label for="title">Title</label>
                   <input type="textbox" id="title" name="title" required>
                 </div>
@@ -67,7 +67,7 @@
           </div>
           <div class="row">
             <div class="column-full">
-              <div class="row align-right margin-top-bot">
+              <div class="row align-right">
                 <input type="submit" id="save" name="save" value="save">
               </div>
             </div>
@@ -75,12 +75,14 @@
         </form>
       </div>
     </div>
-    <div class="container" id="all-entries">
+    <div class="container storage view hidden">
       <div class="row">
         <div class="column-full">
           <div class="row space-between-center">
             <h1>Entries</h1>
-            <a class="new-entry-btn" href="#">New</a>
+            <div>
+              <a class="new-entry-btn" id="entries-storage" href="#">New</a>
+            </div>
           </div>
         </div>
       </div>

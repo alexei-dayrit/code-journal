@@ -33,8 +33,9 @@
     padding: 1rem 0.75rem;
   }
 
-  .no-margin-top {
+  .no-margin {
     margin-top: 0;
+    margin-bottom: 0;
   }
 
   .column-half {

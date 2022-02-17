@@ -6,6 +6,9 @@ var $img = document.querySelector('img');
 var $placeholderImg = $img.getAttribute('src');
 var $form = document.querySelector('form');
 var $list = document.querySelector('ul');
+var $main = document.querySelector('main');
+var $newEntryPage = document.querySelector('.home');
+var $entriesHist = document.querySelector('.storage');
 
 $photoUrl.addEventListener('input', function (event) {
   $img.setAttribute('src', event.target.value);
@@ -28,6 +31,9 @@ $form.addEventListener('submit', function (event) {
   data.nextEntryId++;
   $list.prepend(renderEntry(data.entries[0]));
   $img.setAttribute('src', $placeholderImg);
+  data.view = 'entries';
+  $newEntryPage.className = 'home view hidden';
+  $entriesHist.className = 'storage container view';
   $form.reset();
 });
 
@@ -59,7 +65,6 @@ function renderEntry(entry) {
   var $par = document.createElement('p');
   $par.textContent = entry.notes;
   $columnHalf2.appendChild($par);
-
   return $listItem;
 }
 window.addEventListener('DOMContentLoaded', function (event) {
@@ -68,13 +73,26 @@ window.addEventListener('DOMContentLoaded', function (event) {
   }
 });
 
-var $navLink = document.querySelector('.nav-link');
-function handleNavLink(event) {
-  $navLink.setAttribute('href', '#all-entries');
-}
-$navLink.addEventListener('click', handleNavLink);
-
-var $newEntry = document.querySelector('.new-entry-btn');
-$newEntry.addEventListener('click', function (event) {
-  $newEntry.setAttribute('href', '#new-entry-form');
+$main.addEventListener('click', function (event) {
+  if (event.target.matches('#nav-btn')) {
+    $newEntryPage.className = 'home view hidden';
+    $entriesHist.className = 'storage container view';
+    data.view = 'entries';
+  } else if (event.target.matches('#entries-storage')) {
+    $newEntryPage.className = 'home container view';
+    $entriesHist.className = 'storage container view hidden';
+    data.view = 'entry-form';
+  } else if (event.target.matches('.home-page')) {
+    $newEntryPage.className = 'home container view';
+    $entriesHist.className = 'storage container view hidden';
+    data.view = 'entry-form';
+  }
 });
+
+if (data.view === 'entry-form') {
+  $newEntryPage.className = 'home container view';
+  $entriesHist.className = 'storage container view hidden';
+} else {
+  $newEntryPage.className = 'home view hidden';
+  $entriesHist.className = 'storage container view';
+}
