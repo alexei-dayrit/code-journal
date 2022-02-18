@@ -15,11 +15,11 @@ $photoUrl.addEventListener('input', function (event) {
 });
 
 $form.addEventListener('submit', function (event) {
-  event.preventDefault();
   var title = $form.elements.title.value;
   var photo = $form.elements.photo.value;
   var notes = $form.elements.notes.value;
   var entryId = data.nextEntryId;
+  event.preventDefault();
 
   var newEntry = {
     entryId: entryId,
@@ -27,6 +27,16 @@ $form.addEventListener('submit', function (event) {
     photo: photo,
     notes: notes
   };
+
+  // if (data.editing === null) {
+  //   data.entries.unshift(newEntry);
+  //   data.nextEntryId++;
+  //   $list.prepend(renderEntry(data.entries[0]));
+  //   $img.setAttribute('src', $placeholderImg);
+  // } else {
+
+  // }
+
   data.entries.unshift(newEntry);
   data.nextEntryId++;
   $list.prepend(renderEntry(data.entries[0]));
@@ -37,7 +47,6 @@ $form.addEventListener('submit', function (event) {
   $form.reset();
 });
 
-var idCounter = 1;
 function renderEntry(entry) {
   var $listItem = document.createElement('li');
   $list.prepend($listItem);
@@ -71,8 +80,7 @@ function renderEntry(entry) {
   $icon.setAttribute('class', 'fa-solid fa-pen');
   $h2.appendChild($icon);
 
-  $listItem.setAttribute('data-entry-id', idCounter);
-  idCounter++;
+  $listItem.setAttribute('data-entry-id', entry.entryId);
 
   return $listItem;
 }
@@ -111,11 +119,29 @@ $list.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
     $newEntryPage.className = 'home container view';
     $entriesHist.className = 'storage container view hidden';
+    var $h1 = document.querySelector('h1');
+    $h1.textContent = 'Edit Entry';
     data.view = 'entry-form';
-    var $closestListItem = event.target.closest('[data-entry-id]');
-    var $currentId = $closestListItem.getAttribute('data-entry-id');
-    data.editing = data.entries[$currentId].entryId;
   }
+  var $closestListItem = event.target.closest('[data-entry-id]');
+  var $currentId = $closestListItem.getAttribute('data-entry-id');
+
+  // you will need to find the index of the matching entry in the data.entries
+  // array the id can’t be used as the index
+  for (var i = 0; i < data.entries.length; i++) {
+    if (parseInt($currentId) === data.entries[i].entryId) {
+      data.editing = data.entries[i].entryId;
+      $form.elements.title.value = data.entries[i].title;
+      $form.elements.photo.value = data.entries[i].photo;
+      $form.elements.notes.value = data.entries[i].notes;
+      $img.setAttribute('src', data.entries[i].photo);
+    }
+  }
+
+  // console.log('hello', $currentId);
+  // $form.elements.title.value = data.entries[$currentId].title;
+  // $form.elements.photo.value = data.entries[$currentId].photo;
+  // $form.elements.notes.value = data.entries[$currentId].notes;
+
 });
-// data.editing
 // data.entries[index].entryId
