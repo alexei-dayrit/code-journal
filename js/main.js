@@ -28,18 +28,14 @@ $form.addEventListener('submit', function (event) {
     notes: notes
   };
 
-  // if (data.editing === null) {
-  //   data.entries.unshift(newEntry);
-  //   data.nextEntryId++;
-  //   $list.prepend(renderEntry(data.entries[0]));
-  //   $img.setAttribute('src', $placeholderImg);
-  // } else {
+  if (data.editing === null) {
+    data.entries.unshift(newEntry);
+    data.nextEntryId++;
+    $list.prepend(renderEntry(data.entries[0]));
+  } else {
+    entryId = data.entries[data.editing].entryId;
+  }
 
-  // }
-
-  data.entries.unshift(newEntry);
-  data.nextEntryId++;
-  $list.prepend(renderEntry(data.entries[0]));
   $img.setAttribute('src', $placeholderImg);
   $newEntryPage.className = 'home view hidden';
   $entriesHist.className = 'storage container view';
@@ -125,9 +121,6 @@ $list.addEventListener('click', function (event) {
   }
   var $closestListItem = event.target.closest('[data-entry-id]');
   var $currentId = $closestListItem.getAttribute('data-entry-id');
-
-  // you will need to find the index of the matching entry in the data.entries
-  // array the id can’t be used as the index
   for (var i = 0; i < data.entries.length; i++) {
     if (parseInt($currentId) === data.entries[i].entryId) {
       data.editing = data.entries[i].entryId;
@@ -137,11 +130,4 @@ $list.addEventListener('click', function (event) {
       $img.setAttribute('src', data.entries[i].photo);
     }
   }
-
-  // console.log('hello', $currentId);
-  // $form.elements.title.value = data.entries[$currentId].title;
-  // $form.elements.photo.value = data.entries[$currentId].photo;
-  // $form.elements.notes.value = data.entries[$currentId].notes;
-
 });
-// data.entries[index].entryId
