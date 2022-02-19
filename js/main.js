@@ -14,34 +14,50 @@ $photoUrl.addEventListener('input', function (event) {
   $img.setAttribute('src', event.target.value);
 });
 
-$form.addEventListener('submit', function (event) {
+function getCurrentEntry(event) {
+  var $entryId = event;
+  for (var i = 0; i < data.entries.length; i++) {
+    if (parseInt($entryId) === data.entries[i].entryId) {
+      var obj = data.entries[i];
+      return obj;
+    }
+  }
+}
+
+function saveEntry(event) {
+  event.preventDefault();
   var title = $form.elements.title.value;
   var photo = $form.elements.photo.value;
   var notes = $form.elements.notes.value;
   var entryId = data.nextEntryId;
-  event.preventDefault();
-
-  var newEntry = {
-    entryId: entryId,
-    title: title,
-    photo: photo,
-    notes: notes
-  };
-
   if (data.editing === null) {
-    data.entries.unshift(newEntry);
+    var newEntry = {
+      entryId: entryId,
+      title: title,
+      photo: photo,
+      notes: notes
+    };
     data.nextEntryId++;
-    $list.prepend(renderEntry(data.entries[0]));
+    data.entries.unshift(newEntry);
+    $img.setAttribute('src', $placeholderImg);
+    $list.prepend(renderEntry(newEntry));
+    data.editing = null;
   } else {
-    entryId = data.entries[data.editing].entryId;
+    var $listItem = data.editing;
+    newEntry = getCurrentEntry($listItem);
+    newEntry.title = $form.elements.title.value;
+    newEntry.photo = $form.elements.photo.value;
+    newEntry.notes = $form.elements.notes.value;
+    newEntry.entryId = data.nextEntryId;
+    data.editing = null;
   }
 
-  $img.setAttribute('src', $placeholderImg);
   $newEntryPage.className = 'home view hidden';
   $entriesHist.className = 'storage container view';
   data.view = 'entries';
-  $form.reset();
-});
+}
+
+$form.addEventListener('submit', saveEntry);
 
 function renderEntry(entry) {
   var $listItem = document.createElement('li');
@@ -87,7 +103,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
   }
 });
 
-$main.addEventListener('click', function (event) {
+$main.addEventListener('click', function handleViewSwap(event) {
   if (event.target.matches('#nav-btn')) {
     $newEntryPage.className = 'home view hidden';
     $entriesHist.className = 'storage container view';
@@ -111,14 +127,16 @@ if (data.view === 'entry-form') {
   $entriesHist.className = 'storage container view';
 }
 
-$list.addEventListener('click', function (event) {
-  if (event.target.tagName === 'I') {
-    $newEntryPage.className = 'home container view';
-    $entriesHist.className = 'storage container view hidden';
-    var $h1 = document.querySelector('h1');
-    $h1.textContent = 'Edit Entry';
-    data.view = 'entry-form';
+$list.addEventListener('click', function editEntry(event) {
+  if (event.target.tagName !== 'I') {
+    return;
   }
+  $newEntryPage.className = 'home container view';
+  $entriesHist.className = 'storage container view hidden';
+  var $h1 = document.querySelector('h1');
+  $h1.textContent = 'Edit Entry';
+  data.view = 'entry-form';
+
   var $closestListItem = event.target.closest('[data-entry-id]');
   var $currentId = $closestListItem.getAttribute('data-entry-id');
   for (var i = 0; i < data.entries.length; i++) {
@@ -131,3 +149,5 @@ $list.addEventListener('click', function (event) {
     }
   }
 });
+
+data.editing = null;
