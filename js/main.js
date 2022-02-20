@@ -14,16 +14,6 @@ $photoUrl.addEventListener('input', function (event) {
   $img.setAttribute('src', event.target.value);
 });
 
-function getCurrentEntry(event) {
-  var $entryId = event;
-  for (var i = 0; i < data.entries.length; i++) {
-    if (parseInt($entryId) === data.entries[i].entryId) {
-      var obj = data.entries[i];
-      return obj;
-    }
-  }
-}
-
 function saveEntry(event) {
   event.preventDefault();
 
@@ -35,23 +25,24 @@ function saveEntry(event) {
   } else {
     var $listItem = data.editing;
     newEntry = getCurrentEntry($listItem);
+    console.log('new entry', newEntry);
   }
 
   newEntry.title = $form.elements.title.value;
   newEntry.photo = $form.elements.photo.value;
   newEntry.notes = $form.elements.notes.value;
-  $img.setAttribute('src', $placeholderImg);
-  var rendered = renderEntry(newEntry);
+  var newRender = renderEntry(newEntry);
+  console.log('render:  ', newRender);
 
   if (data.editing === null) {
-    $list.prepend(rendered);
+    $list.prepend(newRender);
     data.entries.unshift(newEntry);
     data.nextEntryId++;
   } else {
-    rendered.replaceWith($listItem);
+    newRender.replaceWith($listItem);
     data.editing = null;
   }
-
+  $img.setAttribute('src', $placeholderImg);
   $newEntryPage.className = 'home view hidden';
   $entriesHist.className = 'storage container view';
   data.view = 'entries';
@@ -139,6 +130,7 @@ $list.addEventListener('click', function editEntry(event) {
   data.view = 'entry-form';
 
   var $closestListItem = event.target.closest('[data-entry-id]');
+  console.log($closestListItem);
   var $currentId = $closestListItem.getAttribute('data-entry-id');
   for (var i = 0; i < data.entries.length; i++) {
     if (parseInt($currentId) === data.entries[i].entryId) {
@@ -151,4 +143,14 @@ $list.addEventListener('click', function editEntry(event) {
   }
 });
 
-data.editing = null;
+function getCurrentEntry(event) {
+  console.log('event', event);
+  var $entryId = event;
+  for (var i = 0; i < data.entries.length; i++) {
+    if (parseInt($entryId) === data.entries[i].entryId) {
+      var obj = data.entries[i];
+      console.log('obj', obj);
+      return obj;
+    }
+  }
+}
