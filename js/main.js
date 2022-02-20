@@ -26,35 +26,36 @@ function getCurrentEntry(event) {
 
 function saveEntry(event) {
   event.preventDefault();
-  var title = $form.elements.title.value;
-  var photo = $form.elements.photo.value;
-  var notes = $form.elements.notes.value;
-  var entryId = data.nextEntryId;
+
+  // testing
+
   if (data.editing === null) {
-    var newEntry = {
-      entryId: entryId,
-      title: title,
-      photo: photo,
-      notes: notes
-    };
-    data.nextEntryId++;
-    data.entries.unshift(newEntry);
-    $img.setAttribute('src', $placeholderImg);
-    $list.prepend(renderEntry(newEntry));
-    data.editing = null;
+    var newEntry = {};
+    newEntry.entryId = data.nextEntryId;
   } else {
     var $listItem = data.editing;
     newEntry = getCurrentEntry($listItem);
-    newEntry.title = $form.elements.title.value;
-    newEntry.photo = $form.elements.photo.value;
-    newEntry.notes = $form.elements.notes.value;
-    newEntry.entryId = data.nextEntryId;
+  }
+
+  newEntry.title = $form.elements.title.value;
+  newEntry.photo = $form.elements.photo.value;
+  newEntry.notes = $form.elements.notes.value;
+  $img.setAttribute('src', $placeholderImg);
+  var rendered = renderEntry(newEntry);
+
+  if (data.editing === null) {
+    $list.prepend(rendered);
+    data.entries.unshift(newEntry);
+    data.nextEntryId++;
+  } else {
+    rendered.replaceWith($listItem);
     data.editing = null;
   }
 
   $newEntryPage.className = 'home view hidden';
   $entriesHist.className = 'storage container view';
   data.view = 'entries';
+  $form.reset();
 }
 
 $form.addEventListener('submit', saveEntry);
