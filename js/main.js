@@ -9,6 +9,8 @@ var $list = document.querySelector('ul');
 var $main = document.querySelector('main');
 var $newEntryPage = document.querySelector('.home');
 var $entriesHist = document.querySelector('.storage');
+var $deleteBtn = document.querySelector('#delete');
+var $h1 = document.querySelector('h1');
 
 $photoUrl.addEventListener('input', function (event) {
   $img.setAttribute('src', event.target.value);
@@ -127,7 +129,7 @@ $list.addEventListener('click', function editEntry(event) {
   }
   $newEntryPage.className = 'home container view';
   $entriesHist.className = 'storage container view hidden';
-  var $h1 = document.querySelector('h1');
+  $deleteBtn.className = '';
   $h1.textContent = 'Edit Entry';
   data.view = 'entry-form';
 
