@@ -14,9 +14,22 @@ h1 {
   margin: 1rem 0;
 }
 
+.h2-entries {
+  display: flex;
+  justify-content: space-between;
+}
+
 img {
   width: 100%;
   object-fit: contain;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.home-page {
+  margin-right: 1rem;
 }
 
 #photo,
@@ -68,9 +81,7 @@ textarea:focus {
 }
 
 /* DATA ENTRIES */
-
 ul {
-  padding: 0;
   list-style: none;
 }
 
