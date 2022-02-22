@@ -16,32 +16,35 @@ $photoUrl.addEventListener('input', function (event) {
 
 function saveEntry(event) {
   event.preventDefault();
-
-  // testing
-
+  var $allListItems = document.querySelectorAll('li');
   if (data.editing === null) {
     var newEntry = {};
     newEntry.entryId = data.nextEntryId;
   } else {
     var $listItem = data.editing;
     newEntry = getCurrentEntry($listItem);
-    console.log('new entry', newEntry);
   }
 
   newEntry.title = $form.elements.title.value;
   newEntry.photo = $form.elements.photo.value;
   newEntry.notes = $form.elements.notes.value;
   var newRender = renderEntry(newEntry);
-  console.log('render:  ', newRender);
 
   if (data.editing === null) {
     $list.prepend(newRender);
     data.entries.unshift(newEntry);
     data.nextEntryId++;
   } else {
-    newRender.replaceWith($listItem);
+    var replacedEntry = $listItem;
+    for (var i = 0; i < $allListItems.length; i++) {
+      if (replacedEntry === parseInt($allListItems[i].getAttribute('data-entry-id'))) {
+        replacedEntry = $allListItems[i];
+      }
+    }
+    replacedEntry.replaceWith(newRender);
     data.editing = null;
   }
+
   $img.setAttribute('src', $placeholderImg);
   $newEntryPage.className = 'home view hidden';
   $entriesHist.className = 'storage container view';
@@ -85,7 +88,6 @@ function renderEntry(entry) {
   $h2.appendChild($icon);
 
   $listItem.setAttribute('data-entry-id', entry.entryId);
-
   return $listItem;
 }
 
@@ -130,7 +132,6 @@ $list.addEventListener('click', function editEntry(event) {
   data.view = 'entry-form';
 
   var $closestListItem = event.target.closest('[data-entry-id]');
-  console.log($closestListItem);
   var $currentId = $closestListItem.getAttribute('data-entry-id');
   for (var i = 0; i < data.entries.length; i++) {
     if (parseInt($currentId) === data.entries[i].entryId) {
@@ -143,13 +144,10 @@ $list.addEventListener('click', function editEntry(event) {
   }
 });
 
-function getCurrentEntry(event) {
-  console.log('event', event);
-  var $entryId = event;
+function getCurrentEntry(entryId) {
   for (var i = 0; i < data.entries.length; i++) {
-    if (parseInt($entryId) === data.entries[i].entryId) {
+    if (parseInt(entryId) === data.entries[i].entryId) {
       var obj = data.entries[i];
-      console.log('obj', obj);
       return obj;
     }
   }
