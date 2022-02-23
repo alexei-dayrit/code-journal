@@ -11,6 +11,7 @@ var $newEntryPage = document.querySelector('.home');
 var $entriesHist = document.querySelector('.storage');
 var $deleteBtn = document.querySelector('#delete');
 var $h1 = document.querySelector('h1');
+var $modal = document.querySelector('.modal');
 
 $photoUrl.addEventListener('input', function (event) {
   $img.setAttribute('src', event.target.value);
@@ -104,20 +105,26 @@ $main.addEventListener('click', function handleViewSwap(event) {
     $newEntryPage.className = 'home view hidden';
     $entriesHist.className = 'storage container view';
     data.view = 'entries';
+    data.editing = null;
+    $form.reset();
   } else if (event.target.matches('#entries-storage')) {
     $newEntryPage.className = 'home container view';
     $entriesHist.className = 'storage container view hidden';
     data.view = 'entry-form';
+    data.editing = null;
+    $form.reset();
   } else if (event.target.matches('.home-page')) {
     $newEntryPage.className = 'home container view';
     $entriesHist.className = 'storage container view hidden';
     data.view = 'entry-form';
+    data.editing = null;
   }
 });
 
 if (data.view === 'entry-form') {
   $newEntryPage.className = 'home container view';
   $entriesHist.className = 'storage container view hidden';
+  data.view = 'entries';
 } else {
   $newEntryPage.className = 'home view hidden';
   $entriesHist.className = 'storage container view';
@@ -154,3 +161,9 @@ function getCurrentEntry(entryId) {
     }
   }
 }
+
+function deleteEntryHandler(event) {
+  $modal.className = 'row modal';
+}
+
+$deleteBtn.addEventListener('click', deleteEntryHandler);

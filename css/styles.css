@@ -67,6 +67,17 @@ input[type="submit"] {
   background: none;
 }
 
+#cancel {
+  background-color: #b6b6b6;
+  color: black;
+  padding: 0.7rem 1rem;
+}
+
+#confirm {
+  background-color: #dc2625;
+  padding: 0.7rem 1rem;
+}
+
 input:focus,
 textarea:focus {
   outline: 2px solid #562b81;
@@ -96,4 +107,23 @@ ul {
 .space-between-center {
   justify-content: space-between;
   align-items: center;
+}
+
+.modal {
+  box-shadow: 0 0 1000px 800px rgb(0 0 0 / 80%);
+  border-radius: 8px;
+  padding: 1rem;
+  width: 50%;
+  height: 250px;
+  background-color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* UTILITY */
+
+.text-upper {
+  text-transform: uppercase;
 }
