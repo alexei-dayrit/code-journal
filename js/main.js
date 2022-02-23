@@ -13,6 +13,7 @@ var $deleteBtn = document.querySelector('#delete');
 var $h1 = document.querySelector('h1');
 var $modal = document.querySelector('.modal');
 var $cancelBtn = document.querySelector('#cancel');
+var $confirmBtn = document.querySelector('#confirm');
 
 $photoUrl.addEventListener('input', function (event) {
   $img.setAttribute('src', event.target.value);
@@ -163,7 +164,7 @@ function getCurrentEntry(entryId) {
   }
 }
 
-function deletePopup(event) {
+function deletePopup() {
   $modal.className = 'row modal';
 }
 
@@ -171,5 +172,27 @@ function cancelDelete() {
   $modal.className = 'row hidden modal';
 }
 
+function confirmDelete(event) {
+  event = data.editing;
+  var allListItems = document.querySelectorAll('li');
+  for (var i = 0; i < allListItems.length; i++) {
+    if (event === parseInt(allListItems[i].getAttribute('data-entry-id'))) {
+      allListItems[i].remove();
+      var currentEntry = parseInt(allListItems[i].getAttribute('data-entry-id'));
+    }
+  }
+  for (var a = 0; a < data.entries.length; a++) {
+    if (currentEntry === data.entries[a].entryId) {
+      data.entries.splice(a, 1);
+    }
+  }
+  $newEntryPage.className = 'home view hidden';
+  $entriesHist.className = 'storage container view';
+  $modal.className = 'row hidden modal';
+  data.view = 'entries';
+  data.editing = null;
+}
+
 $deleteBtn.addEventListener('click', deletePopup);
 $cancelBtn.addEventListener('click', cancelDelete);
+$confirmBtn.addEventListener('click', confirmDelete);
