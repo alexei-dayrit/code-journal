@@ -12,6 +12,7 @@ var $entriesHist = document.querySelector('.storage');
 var $deleteBtn = document.querySelector('#delete');
 var $h1 = document.querySelector('h1');
 var $modal = document.querySelector('.modal');
+var $cancelBtn = document.querySelector('#cancel');
 
 $photoUrl.addEventListener('input', function (event) {
   $img.setAttribute('src', event.target.value);
@@ -162,8 +163,13 @@ function getCurrentEntry(entryId) {
   }
 }
 
-function deleteEntryHandler(event) {
+function deletePopup(event) {
   $modal.className = 'row modal';
 }
 
-$deleteBtn.addEventListener('click', deleteEntryHandler);
+function cancelDelete() {
+  $modal.className = 'row hidden modal';
+}
+
+$deleteBtn.addEventListener('click', deletePopup);
+$cancelBtn.addEventListener('click', cancelDelete);
