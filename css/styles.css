@@ -19,6 +19,18 @@ h1 {
   justify-content: space-between;
 }
 
+.modal-content {
+  text-align: center;
+  margin: 1rem 2rem;
+  padding: 0;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 img {
   width: 100%;
   object-fit: contain;
@@ -59,6 +71,7 @@ input[type="submit"],
   padding: 0.4rem 1rem;
   border-radius: 6px;
   border-style: none;
+  margin: 0.5rem 0;
 }
 
 #delete {
@@ -94,15 +107,18 @@ textarea:focus {
   flex-direction: row-reverse;
 }
 
-/* NAV */
 .nav-link-btn {
   text-decoration: none;
   color: white;
 }
 
-/* DATA ENTRIES */
 ul {
   list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 0.5rem 0;
 }
 
 .space-between-center {
@@ -112,18 +128,15 @@ ul {
 
 .modal {
   box-shadow: 0 0 1000px 800px rgb(0 0 0 / 80%);
-  border-radius: 8px;
-  padding: 1rem;
-  width: 50%;
-  height: 250px;
+  border-radius: 6px;
+  width: 400px;
+  height: 200px;
   background-color: white;
   position: fixed;
-  top: 50%;
+  top: 300px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
 }
-
-/* UTILITY */
 
 .text-upper {
   text-transform: uppercase;
