@@ -9,6 +9,11 @@ var $list = document.querySelector('ul');
 var $main = document.querySelector('main');
 var $newEntryPage = document.querySelector('.home');
 var $entriesHist = document.querySelector('.storage');
+var $deleteBtn = document.querySelector('#delete');
+var $h1 = document.querySelector('h1');
+var $modal = document.querySelector('.modal');
+var $cancelBtn = document.querySelector('#cancel');
+var $confirmBtn = document.querySelector('#confirm');
 
 $photoUrl.addEventListener('input', function (event) {
   $img.setAttribute('src', event.target.value);
@@ -102,20 +107,26 @@ $main.addEventListener('click', function handleViewSwap(event) {
     $newEntryPage.className = 'home view hidden';
     $entriesHist.className = 'storage container view';
     data.view = 'entries';
+    data.editing = null;
+    $form.reset();
   } else if (event.target.matches('#entries-storage')) {
     $newEntryPage.className = 'home container view';
     $entriesHist.className = 'storage container view hidden';
     data.view = 'entry-form';
+    data.editing = null;
+    $form.reset();
   } else if (event.target.matches('.home-page')) {
     $newEntryPage.className = 'home container view';
     $entriesHist.className = 'storage container view hidden';
     data.view = 'entry-form';
+    data.editing = null;
   }
 });
 
 if (data.view === 'entry-form') {
   $newEntryPage.className = 'home container view';
   $entriesHist.className = 'storage container view hidden';
+  data.view = 'entries';
 } else {
   $newEntryPage.className = 'home view hidden';
   $entriesHist.className = 'storage container view';
@@ -127,7 +138,7 @@ $list.addEventListener('click', function editEntry(event) {
   }
   $newEntryPage.className = 'home container view';
   $entriesHist.className = 'storage container view hidden';
-  var $h1 = document.querySelector('h1');
+  $deleteBtn.className = '';
   $h1.textContent = 'Edit Entry';
   data.view = 'entry-form';
 
@@ -152,3 +163,36 @@ function getCurrentEntry(entryId) {
     }
   }
 }
+
+function deletePopup() {
+  $modal.className = 'row modal';
+}
+
+function cancelDelete() {
+  $modal.className = 'row hidden modal';
+}
+
+function confirmDelete(event) {
+  event = data.editing;
+  var allListItems = document.querySelectorAll('li');
+  for (var i = 0; i < allListItems.length; i++) {
+    if (event === parseInt(allListItems[i].getAttribute('data-entry-id'))) {
+      allListItems[i].remove();
+      var currentEntry = parseInt(allListItems[i].getAttribute('data-entry-id'));
+    }
+  }
+  for (var a = 0; a < data.entries.length; a++) {
+    if (currentEntry === data.entries[a].entryId) {
+      data.entries.splice(a, 1);
+    }
+  }
+  $newEntryPage.className = 'home view hidden';
+  $entriesHist.className = 'storage container view';
+  $modal.className = 'row hidden modal';
+  data.view = 'entries';
+  data.editing = null;
+}
+
+$deleteBtn.addEventListener('click', deletePopup);
+$cancelBtn.addEventListener('click', cancelDelete);
+$confirmBtn.addEventListener('click', confirmDelete);

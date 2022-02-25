@@ -6,6 +6,7 @@
   max-width: 575px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .row {
@@ -31,6 +32,11 @@
   .no-margin {
     margin-top: 0;
     margin-bottom: 0;
+  }
+
+  .no-padding-top-bot {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .column-half {

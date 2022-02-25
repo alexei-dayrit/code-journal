@@ -19,6 +19,18 @@ h1 {
   justify-content: space-between;
 }
 
+.modal-content {
+  text-align: center;
+  margin: 1rem 2rem;
+  padding: 0;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 img {
   width: 100%;
   object-fit: contain;
@@ -49,15 +61,35 @@ label {
 }
 
 .new-entry-btn,
-input[type="submit"] {
+input[type="submit"],
+#delete {
   background-color: #562b81;
   color: white;
   text-transform: uppercase;
   font-size: 16px;
   text-decoration: none;
-  padding: 0.6rem 1rem;
+  padding: 0.4rem 1rem;
   border-radius: 6px;
   border-style: none;
+  margin: 0.5rem 0;
+}
+
+#delete {
+  color: red;
+  text-decoration: underline;
+  text-transform: capitalize;
+  background: none;
+}
+
+#cancel {
+  background-color: #b6b6b6;
+  color: black;
+  padding: 0.7rem 1rem;
+}
+
+#confirm {
+  background-color: #dc2625;
+  padding: 0.7rem 1rem;
 }
 
 input:focus,
@@ -70,22 +102,42 @@ textarea:focus {
   margin-bottom: 0.3rem;
 }
 
-.align-right {
+.reverse-space-between {
+  justify-content: space-between;
   flex-direction: row-reverse;
 }
 
-/* NAV */
 .nav-link-btn {
   text-decoration: none;
   color: white;
 }
 
-/* DATA ENTRIES */
 ul {
   list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 0.5rem 0;
 }
 
 .space-between-center {
   justify-content: space-between;
   align-items: center;
+}
+
+.modal {
+  box-shadow: 0 0 1000px 800px rgb(0 0 0 / 80%);
+  border-radius: 6px;
+  width: 400px;
+  height: 200px;
+  background-color: white;
+  position: fixed;
+  top: 300px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.text-upper {
+  text-transform: uppercase;
 }
