@@ -15,11 +15,11 @@ const $modal = document.querySelector('.modal');
 const $cancelBtn = document.querySelector('#cancel');
 const $confirmBtn = document.querySelector('#confirm');
 
-$photoUrl.addEventListener('input', function (event) {
+$photoUrl.addEventListener('input', event => {
   $img.setAttribute('src', event.target.value);
 });
 
-function saveEntry(event) {
+const saveEntry = event => {
   event.preventDefault();
   const $allListItems = document.querySelectorAll('li');
   let newEntry;
@@ -57,11 +57,11 @@ function saveEntry(event) {
   $entriesHist.className = 'storage container view';
   data.view = 'entries';
   $form.reset();
-}
+};
 
 $form.addEventListener('submit', saveEntry);
 
-function renderEntry(entry) {
+const renderEntry = entry => {
   const $listItem = document.createElement('li');
   $list.prepend($listItem);
 
@@ -96,15 +96,15 @@ function renderEntry(entry) {
 
   $listItem.setAttribute('data-entry-id', entry.entryId);
   return $listItem;
-}
+};
 
-window.addEventListener('DOMContentLoaded', function (event) {
+window.addEventListener('DOMContentLoaded', event => {
   for (let i = 0; i < data.entries.length; i++) {
     $list.appendChild(renderEntry(data.entries[i]));
   }
 });
 
-$main.addEventListener('click', function handleViewSwap(event) {
+$main.addEventListener('click', event => {
   if (event.target.matches('#nav-btn')) {
     $newEntryPage.className = 'home view hidden';
     $entriesHist.className = 'storage container view';
@@ -134,7 +134,7 @@ if (data.view === 'entry-form') {
   $entriesHist.className = 'storage container view';
 }
 
-$list.addEventListener('click', function editEntry(event) {
+$list.addEventListener('click', event => {
   if (event.target.tagName !== 'I') {
     return;
   }
@@ -157,24 +157,24 @@ $list.addEventListener('click', function editEntry(event) {
   }
 });
 
-function getCurrentEntry(entryId) {
+const getCurrentEntry = entryId => {
   for (let i = 0; i < data.entries.length; i++) {
     if (parseInt(entryId) === data.entries[i].entryId) {
       const obj = data.entries[i];
       return obj;
     }
   }
-}
+};
 
-function deletePopup() {
+const deletePopup = () => {
   $modal.className = 'row modal';
-}
+};
 
-function cancelDelete() {
+const cancelDelete = () => {
   $modal.className = 'row hidden modal';
-}
+};
 
-function confirmDelete(event) {
+const confirmDelete = event => {
   event = data.editing;
   const allListItems = document.querySelectorAll('li');
   let currentEntry;
@@ -194,7 +194,7 @@ function confirmDelete(event) {
   $modal.className = 'row hidden modal';
   data.view = 'entries';
   data.editing = null;
-}
+};
 
 $deleteBtn.addEventListener('click', deletePopup);
 $cancelBtn.addEventListener('click', cancelDelete);

@@ -12,9 +12,9 @@ if (previousData !== null) {
   data = JSON.parse(previousData);
 }
 
-function handleBeforeUnload(event) {
+const handleBeforeUnload = event => {
   const dataJSON = JSON.stringify(data);
   localStorage.setItem('entries-local-storage', dataJSON);
-}
+};
 
 window.addEventListener('beforeunload', handleBeforeUnload);
