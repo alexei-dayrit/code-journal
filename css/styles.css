@@ -42,6 +42,7 @@ img {
 
 .home-page {
   margin-right: 1rem;
+  cursor: pointer;
 }
 
 #photo,
