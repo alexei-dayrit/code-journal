@@ -116,12 +116,15 @@ $main.addEventListener('click', event => {
     $entriesHist.className = 'storage container view hidden';
     data.view = 'entry-form';
     data.editing = null;
+    $img.setAttribute('src', $placeholderImg);
     $form.reset();
   } else if (event.target.matches('.home-page')) {
     $newEntryPage.className = 'home container view';
     $entriesHist.className = 'storage container view hidden';
     data.view = 'entry-form';
+    $img.setAttribute('src', $placeholderImg);
     data.editing = null;
+    $form.reset();
   }
 });
 
