@@ -22,16 +22,7 @@ $photoUrl.addEventListener('input', event => {
 const saveEntry = event => {
   event.preventDefault();
   const $allListItems = document.querySelectorAll('li');
-  let newEntry;
-  let $listItem;
-  if (data.editing === null) {
-    newEntry = {};
-    newEntry.entryId = data.nextEntryId;
-  } else {
-    $listItem = data.editing;
-    newEntry = getCurrentEntry($listItem);
-  }
-
+  let newEntry = {};
   newEntry.title = $form.elements.title.value;
   newEntry.photo = $form.elements.photo.value;
   newEntry.notes = $form.elements.notes.value;
@@ -40,8 +31,11 @@ const saveEntry = event => {
   if (data.editing === null) {
     $list.prepend(newRender);
     data.entries.unshift(newEntry);
+    newEntry.entryId = data.nextEntryId;
     data.nextEntryId++;
   } else {
+    const $listItem = data.editing;
+    newEntry = getCurrentEntry($listItem);
     let replacedEntry = $listItem;
     for (let i = 0; i < $allListItems.length; i++) {
       if (replacedEntry === parseInt($allListItems[i].getAttribute('data-entry-id'))) {
@@ -138,6 +132,7 @@ if (data.view === 'entry-form') {
 }
 
 $list.addEventListener('click', event => {
+
   if (event.target.tagName !== 'I') {
     return;
   }
